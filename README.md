@@ -1,9 +1,23 @@
+---
+title: career_conversation
+app_file: main.py
+sdk: gradio
+sdk_version: 5.49.1
+---
 
 # Personal Career AI Agent
 
 A personalized AI assistant that answers career-related questions using a structured profile knowledge base.
 
 The project is designed to make a portfolio or personal website more interactive. Instead of expecting visitors to read through static documents, the agent can answer questions conversationally about experience, projects, skills, education, and technical background.
+
+## Live Demo
+
+The app is deployed on Hugging Face Spaces:
+
+https://huggingface.co/spaces/Saumya1497/career_conversation
+
+Note: The Space may take a few seconds to wake up if it has been inactive.
 
 ## What It Does
 
