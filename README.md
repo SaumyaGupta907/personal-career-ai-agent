@@ -1,3 +1,4 @@
+
 # Personal Career AI Agent
 
 A personalized AI assistant that answers career-related questions using a structured profile knowledge base.
@@ -108,3 +109,5 @@ The repository can use a public-safe profile document for demos and deployment w
 - Add a cleaner UI for portfolio integration
 - Expand the profile knowledge base with more scenario-based context
 - Add more structured tools for recruiter interaction
+=======
+
