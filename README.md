@@ -1,56 +1,110 @@
 # Personal Career AI Agent
 
-A personalized AI career assistant that answers recruiter-style questions about my background, experience, skills, projects, and technical work.
+A personalized AI assistant that answers career-related questions using a structured profile knowledge base.
 
-This project was built as part of my Agentic AI learning journey and customized around my own professional profile. The agent uses a resume/profile knowledge base, OpenAI’s API, tool calling, and a Gradio chat interface to respond like a career-focused assistant on my portfolio or personal website.
+The project is designed to make a portfolio or personal website more interactive. Instead of expecting visitors to read through static documents, the agent can answer questions conversationally about experience, projects, skills, education, and technical background.
 
 ## What It Does
 
 The agent can answer questions such as:
 
-- What is Saumya’s software engineering experience?
-- What backend projects has she worked on?
-- Does she have experience with Python, Java, React, AWS, or CI/CD?
-- Which project is most relevant for a backend role?
-- Tell me about her leadership experience.
-- What AI-related work has she done?
-- How can I contact her?
+- What experience does this candidate have?
+- What projects are most relevant for a specific role?
+- What backend, full-stack, cloud, data, or AI experience is available?
+- What leadership or mentoring experience is included?
+- How can someone get in touch?
 
-If the agent cannot answer a question confidently, it records the unknown question so I can improve the knowledge base later.
-
-If a visitor wants to get in touch, the agent can collect their name, email, and notes using a tool call.
+The app also includes tool calling. If a visitor wants to connect, the agent can record their contact details. If the agent cannot answer a question, it logs that question so the knowledge base can be improved later.
 
 ## Tech Stack
 
 - Python
 - OpenAI API
 - Gradio
-- Pushover API
 - pypdf
+- Pushover API
 - python-dotenv
 - JSON tool calling
+- Hugging Face Spaces
 
 ## Key Features
 
-- Personalized system prompt based on my career summary and profile PDF
-- OpenAI-powered chat responses
-- Tool calling for recording user contact details
-- Tool calling for logging unanswered questions
-- PDF parsing using `pypdf`
-- Environment variable management using `.env`
-- Gradio-based chat interface
-- Designed for future deployment on Hugging Face Spaces
+- AI assistant powered by OpenAI
+- Uses a structured text summary and profile PDF as context
+- Answers questions about experience, projects, skills, education, and leadership
+- Supports tool calls for recording user details
+- Logs unknown questions for future improvement
+- Gradio chat interface
+- Deployed on Hugging Face Spaces
 
 ## Project Structure
 
-```text
+```
 personal-career-ai-agent/
-│
 ├── main.py
 ├── requirements.txt
 ├── .env.example
 ├── .gitignore
-│
 └── me/
     ├── summary.txt
-    └── ProfessionalSummarySaumya.pdf
+    └── ProfessionalSummary.pdf
+```
+
+## How It Works
+
+The app loads profile information from a text summary and a PDF document. This information is added to the system prompt so the assistant can answer questions using the provided background context.
+
+When a user sends a message, the app sends the conversation to the OpenAI API. If the model needs to use a tool, the app runs the tool, sends the result back to the model, and returns the final response to the user.
+
+Available tools:
+
+- `record_user_details`: records contact information when someone wants to connect
+- `record_unknown_question`: logs questions the assistant could not answer
+
+## Deployment
+
+The app is deployed on Hugging Face Spaces using Gradio.
+
+The deployed Space includes:
+
+```
+main.py
+requirements.txt
+me/summary.txt
+me/ProfessionalSummary.pdf
+```
+
+Required secrets are configured in the Hugging Face Space settings:
+
+```
+OPENAI_API_KEY
+PUSHOVER_TOKEN
+PUSHOVER_USER
+```
+
+The deployed version uses a public-safe profile document, while private career documents remain local and excluded from the repository.
+
+## Requirements
+
+```
+requests
+python-dotenv
+gradio==5.49.1
+pypdf
+openai
+openai-agents
+```
+
+## Privacy Note
+
+Private profile documents, API keys, and environment files should not be committed to GitHub.
+
+The repository can use a public-safe profile document for demos and deployment while keeping sensitive or detailed career documents private.
+
+## Future Improvements
+
+- Improve response grounding and consistency
+- Add stronger error handling for missing files or missing API keys
+- Add a cleaner UI for portfolio integration
+- Expand the profile knowledge base with more scenario-based context
+- Add more structured tools for recruiter interaction
